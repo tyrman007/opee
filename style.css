@@ -54,3 +54,38 @@ button:hover {
 #result {
     margin-top: 20px;
 }
+
+.result {
+    font-size: 1.5em;
+    margin-top: 20px;
+}
+
+.progress-container {
+    width: 100%;
+    background-color: #e0e0e0;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-top: 10px;
+    position: relative;
+    height: 20px;
+}
+
+.progress-bar {
+    height: 100%;
+    background-color: #007bff;
+}
+
+.progress-labels {
+    display: flex;
+    justify-content: space-between;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding: 0 5px;
+    font-size: 0.8em;
+    color: #000;
+    height: 20px;
+    align-items: center;
+    pointer-events: none;
+}

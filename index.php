@@ -46,12 +46,6 @@ if (!isset($_SESSION['authenticated']) || !$_SESSION['authenticated']) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Obliczanie czasu czytania Biblii</title>
     <link rel="stylesheet" href="style.css">
-    <style>
-        .result {
-            font-size: 1.5em;
-            margin-top: 20px;
-        }
-    </style>
 </head>
 <body>
     <div class="container">
@@ -60,39 +54,11 @@ if (!isset($_SESSION['authenticated']) || !$_SESSION['authenticated']) {
             <label for="days">Liczba dni, przez które czytałeś Biblię:</label>
             <input type="number" id="days" name="days" required>
             <label for="percentage">Procent przeczytanej Biblii:</label>
-            <input type="text" id="percentage" name="percentage" required pattern="[0-9]+([,.][0-9]+)?">
+            <input type="number" id="percentage" name="percentage" required inputmode="decimal" step="0.01" min="0" max="100">
             <button type="submit">Oblicz</button>
         </form>
         <div id="result" class="result"></div>
     </div>
-    <script>
-        document.getElementById('bibleForm').addEventListener('submit', function(event) {
-            event.preventDefault();
-
-            const days = parseFloat(document.getElementById('days').value);
-            let percentage = document.getElementById('percentage').value.replace(',', '.');
-            percentage = parseFloat(percentage);
-
-            if (isNaN(days) || isNaN(percentage) || percentage <= 0 || percentage > 100) {
-                alert('Proszę wprowadzić prawidłowe dane.');
-                return;
-            }
-
-            const D = (days / percentage) * 100;
-            const C = D - days;
-
-            const roundedD = Math.round(D);
-            const roundedC = Math.round(C);
-
-            const endDate = new Date();
-            endDate.setDate(endDate.getDate() + roundedC);
-            const endDateString = endDate.toISOString().split('T')[0];
-
-            const resultDiv = document.getElementById('result');
-            resultDiv.innerHTML = `<p>Przeczytasz całą Biblię w: ${roundedD} dni</p>
-                                  <p>Pozostało do końca: ${roundedC} dni</p>
-                                  <p>Data ukończenia: ${endDateString}</p>`;
-        });
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
